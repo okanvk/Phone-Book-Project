@@ -1,0 +1,17 @@
+﻿@model App.PhoneBook.WebUILayer.Models.DepartmentListViewModel
+
+
+<ul class="list-group">
+    @foreach (var department in Model.Departments)
+    {
+        if (Model.CurrentDepartment == department.DepartmentId)
+        {
+            <a href="/employee/index?department=@department.DepartmentId" class="list-group-item active">@department.DepartmentName</a>
+        }
+        else
+        {
+            <a href="/employee/index?department=@department.DepartmentId" class="list-group-item">@department.DepartmentName</a>
+        }
+    }
+
+</ul>

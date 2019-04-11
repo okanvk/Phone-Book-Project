@@ -1,0 +1,43 @@
+﻿@model App.PhoneBook.WebUILayer.Models.DepartmentListViewModel
+
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+    var value = 1;
+}
+<div class="container">
+
+    <h4 class="text-center" style="margin-top:15px;">Department Management Panel</h4>
+    <a style="margin-bottom:15px;" class="btn btn-primary btn-xs" asp-action="Add" asp-controller="Department">Add new Department</a>
+    @if (Model.Departments.Count == 0)
+    {
+        <div class="alert alert-primary" role="alert">
+            We don't have any departments
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ foreach (var department in Model.Departments)
+                    {
+                        <tr>
+                            <th scope="row">@value</th>
+                            <td>@department.DepartmentName</td>
+                            <td><a class="btn btn-info btn-xs" asp-action="Update" asp-controller="Department" asp-route-departmentId="@department.DepartmentId">Update</a></td>
+                            <td><a class="btn btn-danger btn-xs" asp-action="DeleteDepartment" asp-controller="Department" asp-route-departmentId="@department.DepartmentId">Delete</a></td>
+                        </tr>
+                        value++;
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,46 @@
+﻿@model App.PhoneBook.WebUILayer.Models.EmployeesListAdminViewModel
+
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+    var value = 1;
+}
+
+<div class="container">
+
+    <h4 class="text-center" style="margin-top:15px;">Employee Management Panel</h4>
+    <a style="margin-bottom:15px;" class="btn btn-primary btn-xs" asp-action="Add" asp-controller="Admin">Add new Employee</a>
+    @if (Model.Employees.Count == 0)
+    {
+        <div class="alert alert-primary" role="alert">
+            Phone Numbers list don't have any employees
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">PhoneNumber</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <th scope="row">@value</th>
+                            <td>@employee.FirstName&nbsp;@employee.LastName </td>
+                            <td>@employee.PhoneNumber</td>
+                            <td><a class="btn btn-info btn-xs" asp-action="UpdateEmployee" asp-controller="Admin" asp-route-employeeId="@employee.EmployeeId">Update</a></td>
+                            <td><a class="btn btn-danger btn-xs" asp-action="DeleteEmployee" asp-controller="Admin" asp-route-employeeId="@employee.EmployeeId">Delete</a></td>
+                        </tr>
+                        value++;
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>

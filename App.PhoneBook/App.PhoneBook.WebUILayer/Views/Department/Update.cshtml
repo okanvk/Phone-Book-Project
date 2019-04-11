@@ -1,0 +1,26 @@
+﻿@model App.PhoneBook.WebUILayer.Models.DepartmentUpdateViewModel
+
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top:25px;">
+    <h2>Update a department</h2>
+    <form style="margin-top:15px;" asp-controller="Department" asp-action="Update" method="post">
+
+        <div class="form-group">
+            <label>Department Name</label>
+            <input asp-for="Department.DepartmentName" class="form-control" placeholder="Department Name" />
+        </div>
+        <div class="text-danger">
+            @{
+                if (TempData["error-message"] != null)
+                {
+                    <p>@TempData["error-message"].ToString();</p>
+                }
+            }
+        </div>
+        <input type="hidden" asp-for="Department.DepartmentId" />
+        <input type="submit" value="Add" class="btn btn-xs btn-success" />
+    </form>
+</div>

@@ -1,0 +1,28 @@
+﻿@model App.PhoneBook.WebUILayer.Models.EmployeeListViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container">
+    <h4 class="text-center">Phone Numbers List</h4>
+    @{
+        if (Model.Employees.Count == 0)
+        {
+            <div class="alert alert-primary" role="alert">
+                Phone Numbers list don't have any employees
+            </div>
+        }
+        else
+        {
+            <ul class="list-group">
+                @foreach (var employee in Model.Employees)
+                {
+                    <li class="list-group-item">@employee.FirstName : <b>@employee.PhoneNumber</b> &nbsp; | &nbsp; <a href="/employee/GetEmployeeDetails?employeeId=@employee.EmployeeId" class="btn btn-success btn-sm">Details</a></li>
+                }
+            </ul>
+        }
+    }
+
+</div>
+<product-list-pager current-department="@Model.CurrentDepartment" current-page="@Model.CurrentPage" page-count="@Model.PageCount" page-size="@Model.PageSize"></product-list-pager>

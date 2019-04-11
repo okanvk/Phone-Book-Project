@@ -1,0 +1,27 @@
+﻿@model App.PhoneBook.WebUILayer.Models.EmployeeViewModel
+
+
+@{ 
+    Layout = "~/Views/_Layout.cshtml";
+    var departmentState = "No Department";
+    var managerState = "No Manager";
+}
+
+
+
+<div class="container">
+    <h5 style="padding-left:10px;">Employee Details</h5>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><label>Name&nbsp;:&nbsp;</label>@Model.Employee.FirstName @Model.Employee.LastName</li>
+        <li class="list-group-item">
+            @{ if (Model.Department != null) { departmentState = Model.Department.DepartmentName; } } <label>Department&nbsp;:&nbsp;</label> @departmentState
+        </li>
+        <li class="list-group-item"><label>Phone Number&nbsp;:&nbsp;</label>@Model.Employee.PhoneNumber</li>
+        <li class="list-group-item"><label>Added Date&nbsp;:&nbsp;</label>@Model.Employee.Date</li>
+        <li class="list-group-item">
+            <label>Manager Name&nbsp;:&nbsp;</label> @{ if (Model.Employee.ParentEmployee != null) { managerState = Model.Employee.ParentEmployee.FirstName + " - " + Model.Employee.LastName; }}@managerState
+        </li>
+    </ul>
+    <a href="/employee/index" style="margin-left:15px;margin-top:10px;" class="btn btn-info btn-xs">Back to Phone Numbers list</a>
+</div>
+
