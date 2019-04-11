@@ -1,2 +1,2 @@
 # Phone-Book-Project
-Phone Book Project for a Specific Company
+Phone Book Project for Companies
